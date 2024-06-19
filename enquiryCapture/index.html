@@ -10,20 +10,42 @@
     <link rel="stylesheet" href="assets/style.css">
 
 </head>
-<body class="container">
+<body class="container py-5">
 	<div class="row g-5">
         <div class="col-md-7 col-lg-8">
 
         <!-- Heading -->
-          <h4 class="mb-3">Enquiry Capture</h4>
+          <h4 class="mb-5">Harish Honda Sales Enquiry Capture</h4>
           <!-- Enquiry Form Start -->
-          <form class="needs-validation" novalidate="">
+          <form class="needs-validation" novalidate="" action="https://script.google.com/macros/s/AKfycbwtTH4Cbrh1X3LSxlfPdm8A63l5OyRs_GZ3Y9_ZW4KBGxqzqYlgFmoQ5UMt-BPiv0KW/exec" method="POST">
             <div class="row g-3">
+            <!-- Enquiry Capture By -->
+            <div class="col-md-4" id="captureBy">
+                <label for="captureBy" class="form-label">Enquiry Capture By</label>
+                <select name="Enquiry Capture By" class="form-select" id="captureByDropDown" required>
+                    <option value="">Select</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please provide a valid district.
+                </div>
+            </div>
+
+            <!-- Enquiry Allocated to --> 
+            <div class="col-md-4">
+                <label for="allocatedTo" class="form-label">Enquiry Allocated to</label>
+                <select name="Enquiry Allocated to" class="form-select" id="allocatedToDropDown" required>
+                    <option value="">Select</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please provide a valid district.
+                </div>
+            </div>
+            <hr class="my-4">
 
               <!-- Customer Name -->
               <div class="col-sm-6">
-                <label for="firstName" class="form-label">Customer Name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                <label  for="firstName" class="form-label">Customer Name</label>
+                <input name="Customer Name" type="text" class="form-control" id="firstName" placeholder="" value="" required="">
                 <div class="invalid-feedback">
                   Valid first name is required.
                 </div>
@@ -32,7 +54,7 @@
               <!-- Contact Number -->
               <div class="col-sm-6">
                 <label for="lastName" class="form-label">Phone Number</label>
-                <input type="number" class="form-control" id="lastName" placeholder="" value="" required="">
+                <input name="Phone Number" type="number" class="form-control" id="lastName" placeholder="" value="" required="">
                 <div class="invalid-feedback">
                   Valid last name is required.
                 </div>
@@ -41,7 +63,7 @@
               <!-- Customer Whatsapp No -->
               <div class="col-12">
                 <label for="whatsappNumber" class="form-label">Whatsapp No. <span class="text-body-secondary">(Optional)</span></label>
-                <input type="number" class="form-control" id="whatsappNumber" placeholder="Customer Whatsapp Number">
+                <input name="Whatsapp Number" type="number" class="form-control" id="whatsappNumber" placeholder="Customer Whatsapp Number">
                 <div class="invalid-feedback">
                   Please enter a valid email address
                 </div>
@@ -50,7 +72,7 @@
               <!-- Customer Address -->
               <div class="col-12">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+                <input name="Address" type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
                 <div class="invalid-feedback">
                   Please Enter Customer Address.
                 </div>
@@ -59,104 +81,97 @@
               <!-- Address 2 -->
               <div class="col-12">
                 <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
-                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                <input name="Address 2" type="text" class="form-control" id="address2" placeholder="Apartment or suite">
               </div>
   
 
+              <!-- Zip Code -->
+              <div class="col-md-3">
+                <label for="zip" class="form-label">Zip</label>
+                <input name="Zip Code" type="number" class="form-control" id="zip" placeholder="Enter Pin Code" required>
+              </div>
               <!-- District -->
               <div class="col-md-4">
                 <label for="district" class="form-label">District</label>
-                <select class="form-select" id="district" required>
+                <select name="District" class="form-select" id="district" required>
                     <option value="">Select District</option>
                 </select>
                 <div class="invalid-feedback">
                     Please provide a valid district.
                 </div>
-            </div>
-
-            <!-- Zip Code -->
-            <div class="col-md-3">
-                <label for="zip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="Enter Pin Code" required>
-                <div class="invalid-feedback">
-                    Zip code required.
-                </div>
-            </div>
+            </div> 
             <hr class="my-4">
 
-            <!-- Purchase Type -->
-            <h4 class="mb-3">Purchase Type</h4>
-            <div class="my-3">
-                <div class="form-check">
-                    <input id="Cash" name="purchaseType" type="radio" class="form-check-input" checked="" required="">
-                    <label class="form-check-label" for="Cash">Cash</label>
+            <!-- Purchase Type And Enquiry Status -->
+             <div class="row d-flex">
+                <!-- Purchase Type -->
+                <div class="my-3 col-12 col-md-6">
+                    <h4 class="mb-3">Purchase Type</h4>
+                    <div class="form-check">
+                        <input id="cash" name="Purchase Type" type="radio" class="form-check-input" value="Cash" required>
+                        <label class="form-check-label" for="cash">Cash</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="finance" name="Purchase Type" type="radio" class="form-check-input" value="Finance" required>
+                        <label class="form-check-label" for="finance">Finance</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="notDecided" name="Purchase Type" type="radio" class="form-check-input" value="Not Decided" required>
+                        <label class="form-check-label" for="notDecided">Not Decided</label>
+                    </div>
                 </div>
-                <div class="form-check">
-                    <input id="Finance" name="purchaseType" type="radio" class="form-check-input" required="">
-                    <label class="form-check-label" for="Finance">Finance</label>
+                <!-- Enquiry Status -->
+                <div class="my-3 col-12 col-md-6">
+                    <h4 class="mb-3">Enquiry Status</h4>
+                    <div class="form-check">
+                        <input id="Hot" name="Enquiry Status" type="radio" class="form-check-input" value="Hot" required>
+                        <label class="form-check-label" for="Hot">Hot</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="Warm" name="Enquiry Status" type="radio" class="form-check-input" value="Warm" required>
+                        <label class="form-check-label" for="Warm">Warm</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="Cold" name="Enquiry Status" type="radio" class="form-check-input" value="Cold" required>
+                        <label class="form-check-label" for="Cold">Cold</label>
+                    </div>
                 </div>
-                <div class="form-check">
-                    <input id="notDecided" name="purchaseType" type="radio" class="form-check-input" required="">
-                    <label class="form-check-label" for="notDecided">Not Decided</label>
-                </div>
-            </div>
-
-
-            <!-- Enquiry Status -->
-            <h4 class="mb-3">Enquiry Status</h4>
-            <div class="my-3">
-                <div class="form-check">
-                    <input id="Hot" name="enquiryStatus" type="radio" class="form-check-input" checked required>
-                    <label class="form-check-label" for="Hot">Hot</label>
-                </div>
-                <div class="form-check">
-                    <input id="Warm" name="enquiryStatus" type="radio" class="form-check-input" required>
-                    <label class="form-check-label" for="Warm">Warm</label>
-                </div>
-                <div class="form-check">
-                    <input id="Cold" name="enquiryStatus" type="radio" class="form-check-input" required>
-                    <label class="form-check-label" for="Cold">Cold</label>
-                </div>
-            </div>
-
-
+             </div>
+             
             <!-- Enquiry Source -->
             <h4 class="mb-3">Enquiry Source</h4>
             <div class="my-3">
-                <div class="my-3">
+                    <!-- Showroom -->
                     <div class="form-check">
                         <input id="Showroom" name="enquirySource" type="radio" class="form-check-input" required>
                         <label class="form-check-label" for="Showroom">Showroom</label>
-                        <select id="showroomDropdown" style="display: none;">
-                            <option value="">Enquiry Type</option>
+                        <select name="Enquiry Type" id="showroomDropdown" style="display: none;" class="rounded my-2 py-1 px-3 border">
+                            <option value="">Select Source</option>
                         </select>
                     </div>
-                </div>
 
-                <div class="form-check">
-                    <input id="Field" name="enquirySource" type="radio" class="form-check-input" required>
-                    <label class="form-check-label" for="Field">Field</label>
-                    <select id="fieldDropdown" style="display: none;">
-                        <option value="">Select Field Option</option>
-                        <option value="Option A">Option A</option>
-                        <option value="Option B">Option B</option>
-                        <option value="Option C">Option C</option>
-                    </select>
-                </div>
-                <div class="form-check">
-                    <input id="DigitalPromotion" name="enquirySource" type="radio" class="form-check-input" required>
-                    <label class="form-check-label" for="DigitalPromotion">Digital Promotion</label>
-                    <select id="digitalPromotionDropdown" style="display: none;">
-                        <option value="">Select Digital Promotion Option</option>
-                        <option value="Option X">Option X</option>
-                        <option value="Option Y">Option Y</option>
-                        <option value="Option Z">Option Z</option>
-                    </select>
-                </div>
+                    <!-- Field -->
+                    <div class="form-check">
+                        <input id="Field" name="enquirySource" type="radio" class="form-check-input" required>
+                        <label class="form-check-label" for="Field">Field</label>
+                        <select name="Enquiry Type" id="fieldDropdown" style="display: none;" class="rounded my-2 py-1 px-3 border">
+                            <option value="">Select Source</option>
+                        </select>
+                        <textarea name="Field Location" id="fieldLocation" style="display: none;" placeholder="Field Location" class="rounded my-2 py-1 px-3 border w-100"></textarea>
+                    </div>
+
+                    <!-- Digital Promotion -->
+                    <div class="form-check">
+                        <input id="DigitalPromotion" name="enquirySource" type="radio" class="form-check-input" required>
+                        <label class="form-check-label" for="DigitalPromotion">Digital Promotion</label>
+                        <select name="Enquiry Type" id="digitalPromotionDropdown" style="display: none;" class="rounded my-2 py-1 px-3 border">
+                            <option value="">Select Source</option>
+                        </select>
+                    </div>      
             </div>
-
-            
             <hr class="my-4">
+
+            <!-- Submit Button -->
             <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
           </form>
         </div>

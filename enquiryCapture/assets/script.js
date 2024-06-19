@@ -31,59 +31,38 @@ async function fetchDistrict() {
     }
 }
 
-
-
-
+ 
 
 // Enquiry Source
 const showroomDropdown = document.getElementById('showroomDropdown');
-    const fieldDropdown = document.getElementById('fieldDropdown');
-    const digitalPromotionDropdown = document.getElementById('digitalPromotionDropdown');
+const fieldDropdown = document.getElementById('fieldDropdown');
+const digitalPromotionDropdown = document.getElementById('digitalPromotionDropdown');
     document.querySelectorAll('input[name="enquirySource"]').forEach((radio) => {
         radio.addEventListener('change', (event) => {
             if (event.target.id === 'Showroom') {
                 fetchOptions();
+                document.querySelector("#fieldLocation").style.display ='none';
                 showroomDropdown.style.display = 'block';
                 fieldDropdown.style.display = 'none';
                 digitalPromotionDropdown.style.display = 'none';
-                // Fetch Showroom Option 
-                async function fetchOptions() {
-                    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';
-                    try {
-                        const response = await fetch(url);
-                        const data = await response.text();
-                        // Split the CSV data into rows
-                        const rows = data.split('\n');
-                        const options = [];
-                        // Iterate over the rows starting from index 1 (D2 in Google Sheets)
-                        for (let i = 1; i < rows.length; i++) {
-                            // Split the row into cells
-                            const cells = rows[i].split(',');
-                            // Check if the cell is not empty and add it to the options array
-                            if (cells[3] && cells[3].trim() !== '') {
-                                options.push(cells[3].trim());
-                            }
-                        }
-                        // Populate the select dropdown with the fetched options
-                        const select = document.getElementById('showroomDropdown');
-                        options.forEach(option => {
-                            const optionElement = document.createElement('option');
-                            optionElement.value = option;
-                            optionElement.textContent = option;
-                            select.appendChild(optionElement);
-                        });
-                    } catch (error) {
-                        console.error('Error fetching options:', error);
-                    }
-                }
+                // Fetch Showroom Option
+                async function fetchOptions(){const e='https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';try{const t=await fetch(e),n=await t.text(),o=n.split('\n'),r=[];for(let e=1;e<o.length;e++){const t=o[e].split(',');t[3]&&t[3].trim()!==''&&r.push(t[3].trim())}const s=document.getElementById('showroomDropdown');r.forEach(e=>{const t=document.createElement('option');t.value=e,t.textContent=e,s.appendChild(t)})}catch(e){console.error('Error fetching options:',e)}};
             } else if (event.target.id === 'Field') {
+                fetchOptions();
                 showroomDropdown.style.display = 'none';
                 fieldDropdown.style.display = 'block';
+                document.querySelector("#fieldLocation").style.display ='block';
                 digitalPromotionDropdown.style.display = 'none';
+                async function fetchOptions(){const e='https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';try{const t=await fetch(e),n=await t.text(),o=n.split('\n'),r=[];for(let e=1;e<o.length;e++){const t=o[e].split(',');t[4]&&t[4].trim()!==''&&r.push(t[4].trim())}const s=document.getElementById('fieldDropdown');r.forEach(e=>{const t=document.createElement('option');t.value=e,t.textContent=e,s.appendChild(t)})}catch(e){console.error('Error fetching options:',e)}};
+
             } else if (event.target.id === 'DigitalPromotion') {
+                document.querySelector("#fieldLocation").style.display ='none';
+                fetchOptions();
                 showroomDropdown.style.display = 'none';
                 fieldDropdown.style.display = 'none';
                 digitalPromotionDropdown.style.display = 'block';
+                async function fetchOptions(){const e='https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';try{const t=await fetch(e),n=await t.text(),o=n.split('\n'),r=[];for(let e=1;e<o.length;e++){const t=o[e].split(',');t[5]&&t[5].trim()!==''&&r.push(t[5].trim())}const s=document.getElementById('digitalPromotionDropdown');r.forEach(e=>{const t=document.createElement('option');t.value=e,t.textContent=e,s.appendChild(t)})}catch(e){console.error('Error fetching options:',e)}};
+
             }
         });
     });
@@ -91,3 +70,15 @@ const showroomDropdown = document.getElementById('showroomDropdown');
 
 
     
+
+
+
+
+
+    
+// Fetch options for "Enquiry Capture By
+async function fetchCaptureByOptions(){const url='https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';try{const response=await fetch(url);const data=await response.text();const rows=data.split('\n');const options=[];for(let i=1;i<rows.length;i++){const cells=rows[i].split(',');if(cells[6]&&cells[6].trim()!==''){options.push(cells[6].trim());}}const select=document.getElementById('captureByDropDown');options.forEach(option=>{const optionElement=document.createElement('option');optionElement.value=option;optionElement.textContent=option;select.appendChild(optionElement);});}catch(error){console.error('Error fetching options:',error);}}fetchCaptureByOptions();
+
+
+//Fetch options for "Enquiry Allocated To
+async function fetchAllocatedOptions(){const url='https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';try{const response=await fetch(url);const data=await response.text();const rows=data.split('\n');const options=[];for(let i=1;i<rows.length;i++){const cells=rows[i].split(',');if(cells[6]&&cells[6].trim()!==''){options.push(cells[6].trim());}}const select=document.getElementById('allocatedToDropDown');options.forEach(option=>{const optionElement=document.createElement('option');optionElement.value=option;optionElement.textContent=option;select.appendChild(optionElement);});}catch(error){console.error('Error fetching options:',error);}}fetchAllocatedOptions();
