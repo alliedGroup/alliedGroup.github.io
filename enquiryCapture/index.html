@@ -1,32 +1,151 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="Google Sheet.css">
-</head>
-<body>
-	<div class="container">
-		<form method="post" action="" name="contact-form">
-			<h4>Enquiry Capture Form Harish Honda</h4>
-            <label for="Customer Name">Customer Name</label>
-			<input type="text" name="Customer-Name" placeholder="Customer Name">
-            <label for="DSE Name">DSE Name</label>
-            <input type="text" name="DSE-Name" placeholder="DSE Name">
-            <label for="Contact Number">Contact Number</label>
-			<input type="text" name="Contact-No." placeholder="Contact Number">
-            <label for="Whatsaap Number">Whatsaap Number</label>
-			<input type="text" name="Whatsaap-No." placeholder="Whatsaap Number">
-            <label for="Address">Address</label>
-			<input type="text" name="Address" placeholder="Address">
-            <label for="Model Name">Model Name</label>
-			<input type="text" name="Model-Name" placeholder="Model Name">
-            <label for="Model Variant">Model Variant</label>
-			<input type="text" name="Model-Variant" placeholder="Model Variant">
-			<label for="Capture Remarks">Capture Remarks</label>
-			<textarea name="Capture Remarks" rows="7" placeholder="Capture Remarks"></textarea>
-			<input type="submit" value="Submit" id="submit">
-		</form>
-	</div>
 
-	<script src="Google Sheet.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body class="container">
+	<div class="row g-5">
+        <div class="col-md-7 col-lg-8">
+
+        <!-- Heading -->
+          <h4 class="mb-3">Enquiry Capture</h4>
+          <!-- Enquiry Form Start -->
+          <form class="needs-validation" novalidate="">
+            <div class="row g-3">
+
+              <!-- Customer Name -->
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">Customer Name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+  
+              <!-- Contact Number -->
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Phone Number</label>
+                <input type="number" class="form-control" id="lastName" placeholder="" value="" required="">
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+  
+              <!-- Customer Whatsapp No -->
+              <div class="col-12">
+                <label for="whatsappNumber" class="form-label">Whatsapp No. <span class="text-body-secondary">(Optional)</span></label>
+                <input type="number" class="form-control" id="whatsappNumber" placeholder="Customer Whatsapp Number">
+                <div class="invalid-feedback">
+                  Please enter a valid email address
+                </div>
+              </div>
+  
+              <!-- Customer Address -->
+              <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+                <div class="invalid-feedback">
+                  Please Enter Customer Address.
+                </div>
+              </div>
+  
+              <!-- Address 2 -->
+              <div class="col-12">
+                <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
+                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+              </div>
+  
+
+              <!-- District -->
+              <div class="col-md-4">
+                <label for="district" class="form-label">District</label>
+                <select class="form-select" id="district" required>
+                    <option value="">Select District</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please provide a valid district.
+                </div>
+            </div>
+
+            <!-- Zip Code -->
+            <div class="col-md-3">
+                <label for="zip" class="form-label">Zip</label>
+                <input type="text" class="form-control" id="zip" placeholder="Enter Pin Code" required>
+                <div class="invalid-feedback">
+                    Zip code required.
+                </div>
+            </div>
+            <hr class="my-4">
+
+            <!-- Purchase Type -->
+            <h4 class="mb-3">Purchase Type</h4>
+            <div class="my-3">
+                <div class="form-check">
+                    <input id="Cash" name="purchaseType" type="radio" class="form-check-input" checked="" required="">
+                    <label class="form-check-label" for="Cash">Cash</label>
+                </div>
+                <div class="form-check">
+                    <input id="Finance" name="purchaseType" type="radio" class="form-check-input" required="">
+                    <label class="form-check-label" for="Finance">Finance</label>
+                </div>
+                <div class="form-check">
+                    <input id="notDecided" name="purchaseType" type="radio" class="form-check-input" required="">
+                    <label class="form-check-label" for="notDecided">Not Decided</label>
+                </div>
+            </div>
+
+
+            <!-- Enquiry Status -->
+            <h4 class="mb-3">Enquiry Status</h4>
+            <div class="my-3">
+                <div class="form-check">
+                    <input id="Hot" name="enquiryStatus" type="radio" class="form-check-input" checked required>
+                    <label class="form-check-label" for="Hot">Hot</label>
+                </div>
+                <div class="form-check">
+                    <input id="Warm" name="enquiryStatus" type="radio" class="form-check-input" required>
+                    <label class="form-check-label" for="Warm">Warm</label>
+                </div>
+                <div class="form-check">
+                    <input id="Cold" name="enquiryStatus" type="radio" class="form-check-input" required>
+                    <label class="form-check-label" for="Cold">Cold</label>
+                </div>
+            </div>
+
+
+            <!-- Enquiry Source -->
+            <h4 class="mb-3">Enquiry Source</h4>
+            <div class="my-3">
+                <div class="form-check">
+                    <input id="Showroom" name="enquirySource" type="radio" class="form-check-input" checked required>
+                    <label class="form-check-label" for="Showroom">Showroom</label>
+                </div>
+                <div class="form-check">
+                    <input id="Field" name="enquirySource" type="radio" class="form-check-input" required>
+                    <label class="form-check-label" for="Field">Field</label>
+                </div>
+                <div class="form-check">
+                    <input id="DigitalPromotion" name="enquirySource" type="radio" class="form-check-input" required>
+                    <label class="form-check-label" for="DigitalPromotion">Digital Promotion</label>
+                </div>
+            </div>
+  
+            <hr class="my-4">
+  
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- External JS -->
+       <script src="assets/script.js"></script>
+	
 </body>
 </html>
