@@ -123,22 +123,40 @@
             <!-- Enquiry Source -->
             <h4 class="mb-3">Enquiry Source</h4>
             <div class="my-3">
-                <div class="form-check">
-                    <input id="Showroom" name="enquirySource" type="radio" class="form-check-input" checked required>
-                    <label class="form-check-label" for="Showroom">Showroom</label>
+                <div class="my-3">
+                    <div class="form-check">
+                        <input id="Showroom" name="enquirySource" type="radio" class="form-check-input" required>
+                        <label class="form-check-label" for="Showroom">Showroom</label>
+                        <select id="showroomDropdown" style="display: none;">
+                            <option value="">Enquiry Type</option>
+                        </select>
+                    </div>
                 </div>
+
                 <div class="form-check">
                     <input id="Field" name="enquirySource" type="radio" class="form-check-input" required>
                     <label class="form-check-label" for="Field">Field</label>
+                    <select id="fieldDropdown" style="display: none;">
+                        <option value="">Select Field Option</option>
+                        <option value="Option A">Option A</option>
+                        <option value="Option B">Option B</option>
+                        <option value="Option C">Option C</option>
+                    </select>
                 </div>
                 <div class="form-check">
                     <input id="DigitalPromotion" name="enquirySource" type="radio" class="form-check-input" required>
                     <label class="form-check-label" for="DigitalPromotion">Digital Promotion</label>
+                    <select id="digitalPromotionDropdown" style="display: none;">
+                        <option value="">Select Digital Promotion Option</option>
+                        <option value="Option X">Option X</option>
+                        <option value="Option Y">Option Y</option>
+                        <option value="Option Z">Option Z</option>
+                    </select>
                 </div>
             </div>
-  
+
+            
             <hr class="my-4">
-  
             <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
           </form>
         </div>
