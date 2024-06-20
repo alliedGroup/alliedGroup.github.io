@@ -1,4 +1,3 @@
-
 // Fetch District From Zip Code
 document.getElementById('zip').addEventListener('input', fetchDistrict);
 async function fetchDistrict() {
@@ -31,13 +30,11 @@ async function fetchDistrict() {
     }
 }
 
- 
-
 // Enquiry Source
 const showroomDropdown = document.getElementById('showroomDropdown');
 const fieldDropdown = document.getElementById('fieldDropdown');
 const digitalPromotionDropdown = document.getElementById('digitalPromotionDropdown');
-    document.querySelectorAll('input[name="enquirySource"]').forEach((radio) => {
+    document.querySelectorAll('input[name="Enquiry Source"]').forEach((radio) => {
         radio.addEventListener('change', (event) => {
             if (event.target.id === 'Showroom') {
                 fetchOptions();
@@ -45,7 +42,9 @@ const digitalPromotionDropdown = document.getElementById('digitalPromotionDropdo
                 showroomDropdown.style.display = 'block';
                 fieldDropdown.style.display = 'none';
                 digitalPromotionDropdown.style.display = 'none';
-                // Fetch Showroom Option
+                fieldDropdown.setAttribute("name", "");
+                digitalPromotionDropdown.setAttribute("name", "");
+                showroomDropdown.setAttribute("name", "Enquiry Type");
                 async function fetchOptions(){const e='https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';try{const t=await fetch(e),n=await t.text(),o=n.split('\n'),r=[];for(let e=1;e<o.length;e++){const t=o[e].split(',');t[3]&&t[3].trim()!==''&&r.push(t[3].trim())}const s=document.getElementById('showroomDropdown');r.forEach(e=>{const t=document.createElement('option');t.value=e,t.textContent=e,s.appendChild(t)})}catch(e){console.error('Error fetching options:',e)}};
             } else if (event.target.id === 'Field') {
                 fetchOptions();
@@ -54,7 +53,9 @@ const digitalPromotionDropdown = document.getElementById('digitalPromotionDropdo
                 document.querySelector("#fieldLocation").style.display ='block';
                 digitalPromotionDropdown.style.display = 'none';
                 async function fetchOptions(){const e='https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';try{const t=await fetch(e),n=await t.text(),o=n.split('\n'),r=[];for(let e=1;e<o.length;e++){const t=o[e].split(',');t[4]&&t[4].trim()!==''&&r.push(t[4].trim())}const s=document.getElementById('fieldDropdown');r.forEach(e=>{const t=document.createElement('option');t.value=e,t.textContent=e,s.appendChild(t)})}catch(e){console.error('Error fetching options:',e)}};
-
+                showroomDropdown.setAttribute("name", "")
+                digitalPromotionDropdown.setAttribute("name", "")
+                fieldDropdown.setAttribute("name", "Enquiry Type");
             } else if (event.target.id === 'DigitalPromotion') {
                 document.querySelector("#fieldLocation").style.display ='none';
                 fetchOptions();
@@ -62,18 +63,12 @@ const digitalPromotionDropdown = document.getElementById('digitalPromotionDropdo
                 fieldDropdown.style.display = 'none';
                 digitalPromotionDropdown.style.display = 'block';
                 async function fetchOptions(){const e='https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';try{const t=await fetch(e),n=await t.text(),o=n.split('\n'),r=[];for(let e=1;e<o.length;e++){const t=o[e].split(',');t[5]&&t[5].trim()!==''&&r.push(t[5].trim())}const s=document.getElementById('digitalPromotionDropdown');r.forEach(e=>{const t=document.createElement('option');t.value=e,t.textContent=e,s.appendChild(t)})}catch(e){console.error('Error fetching options:',e)}};
-
+                showroomDropdown.setAttribute("name", "")
+                fieldDropdown.setAttribute("name", "");
+                digitalPromotionDropdown.setAttribute("name", "Enquiry Type");
             }
         });
     });
-
-
-
-    
-
-
-
-
 
     
 // Fetch options for "Enquiry Capture By
@@ -82,3 +77,30 @@ async function fetchCaptureByOptions(){const url='https://docs.google.com/spread
 
 //Fetch options for "Enquiry Allocated To
 async function fetchAllocatedOptions(){const url='https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';try{const response=await fetch(url);const data=await response.text();const rows=data.split('\n');const options=[];for(let i=1;i<rows.length;i++){const cells=rows[i].split(',');if(cells[6]&&cells[6].trim()!==''){options.push(cells[6].trim());}}const select=document.getElementById('allocatedToDropDown');options.forEach(option=>{const optionElement=document.createElement('option');optionElement.value=option;optionElement.textContent=option;select.appendChild(optionElement);});}catch(error){console.error('Error fetching options:',error);}}fetchAllocatedOptions();
+
+
+// Time Stamp
+function updateTimestamp(){const e=new Date(),t=("0"+e.getDate()).slice(-2)+"/"+("0"+(e.getMonth()+1)).slice(-2)+"/"+e.getFullYear()+" "+("0"+e.getHours()).slice(-2)+":"+("0"+e.getMinutes()).slice(-2)+":"+("0"+e.getSeconds()).slice(-2);document.getElementById("timestamp").value=t}setInterval(updateTimestamp,1e3),document.getElementById("myForm").addEventListener("submit",function(e){e.preventDefault(),updateTimestamp()});
+
+
+
+
+// Reload the form after submited
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwtTH4Cbrh1X3LSxlfPdm8A63l5OyRs_GZ3Y9_ZW4KBGxqzqYlgFmoQ5UMt-BPiv0KW/exec';
+const form = document.forms['enquiryForm'];
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  if (form.checkValidity() === false) {
+    e.stopPropagation();
+    form.classList.add('was-validated');
+    return;
+  }
+  
+  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+    .then(response => {
+      alert("Thank you! Your Enquiry Is Recorded.");
+      window.location.reload();
+    })
+    .catch(error => console.error('Error!', error.message));
+});
