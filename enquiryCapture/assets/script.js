@@ -74,33 +74,8 @@ const digitalPromotionDropdown = document.getElementById('digitalPromotionDropdo
 // Fetch options for "Enquiry Capture By
 async function fetchCaptureByOptions(){const url='https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';try{const response=await fetch(url);const data=await response.text();const rows=data.split('\n');const options=[];for(let i=1;i<rows.length;i++){const cells=rows[i].split(',');if(cells[6]&&cells[6].trim()!==''){options.push(cells[6].trim());}}const select=document.getElementById('captureByDropDown');options.forEach(option=>{const optionElement=document.createElement('option');optionElement.value=option;optionElement.textContent=option;select.appendChild(optionElement);});}catch(error){console.error('Error fetching options:',error);}}fetchCaptureByOptions();
 
-
 //Fetch options for "Enquiry Allocated To
 async function fetchAllocatedOptions(){const url='https://docs.google.com/spreadsheets/d/e/2PACX-1vSS58IoBCM_4m7DohiC2UGYpPKjP1_YTpp0mIRWYfLQnZ-dWEvk-SfwMKABxElSbOUn3oq_3FYeuVBP/pub?gid=1246389069&single=true&output=csv';try{const response=await fetch(url);const data=await response.text();const rows=data.split('\n');const options=[];for(let i=1;i<rows.length;i++){const cells=rows[i].split(',');if(cells[6]&&cells[6].trim()!==''){options.push(cells[6].trim());}}const select=document.getElementById('allocatedToDropDown');options.forEach(option=>{const optionElement=document.createElement('option');optionElement.value=option;optionElement.textContent=option;select.appendChild(optionElement);});}catch(error){console.error('Error fetching options:',error);}}fetchAllocatedOptions();
 
-
-// Time Stamp
-function updateTimestamp(){const e=new Date(),t=("0"+e.getDate()).slice(-2)+"/"+("0"+(e.getMonth()+1)).slice(-2)+"/"+e.getFullYear()+" "+("0"+e.getHours()).slice(-2)+":"+("0"+e.getMinutes()).slice(-2)+":"+("0"+e.getSeconds()).slice(-2);document.getElementById("timestamp").value=t}setInterval(updateTimestamp,1e3),document.getElementById("myForm").addEventListener("submit",function(e){e.preventDefault(),updateTimestamp()});
-
-
-
-
-// Reload the form after submited
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwtTH4Cbrh1X3LSxlfPdm8A63l5OyRs_GZ3Y9_ZW4KBGxqzqYlgFmoQ5UMt-BPiv0KW/exec';
-const form = document.forms['enquiryForm'];
-
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  if (form.checkValidity() === false) {
-    e.stopPropagation();
-    form.classList.add('was-validated');
-    return;
-  }
-  
-  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-    .then(response => {
-      alert("Thank you! Your Enquiry Is Recorded.");
-      window.location.reload();
-    })
-    .catch(error => console.error('Error!', error.message));
-});
+// Timestamp and Enquiry ID
+function updateTimestamp(){const e=new Date,t=("0"+e.getDate()).slice(-2)+"/"+("0"+(e.getMonth()+1)).slice(-2)+"/"+e.getFullYear()+" "+("0"+e.getHours()).slice(-2)+":"+("0"+e.getMinutes()).slice(-2)+":"+("0"+e.getSeconds()).slice(-2);document.getElementById("timestamp").value=t}setInterval(updateTimestamp,1e3),document.getElementById("enquiryForm").addEventListener("submit",function(e){e.preventDefault(),updateTimestamp()});function generateUniqueId(){const e=new Date,t=e.toLocaleDateString("en-IN",{day:"2-digit",month:"2-digit",year:"2-digit"}).replace(/\//g,""),n=("0"+e.getHours()).slice(-2)+("0"+e.getMinutes()).slice(-2)+("0"+e.getSeconds()).slice(-2);document.getElementById("enquiryId").value="EQ"+t+"-"+n}generateUniqueId();
