@@ -11,7 +11,14 @@
 	<div class="row g-5 d-flex justify-content-center">
         <div class="col-md-6 col-lg-8">
         <!-- Heading -->
-          <h4 class="mb-5">Harish Honda Sales Enquiry Capture</h4>
+          <div class="header mb-5 border-bottom d-flex pb-5">
+            <img class="hondaLogo" src="assets/images/hondaLogo.svg" alt="Harish Honda">
+            <div class="title ms-4">
+              <h1 class="fs-1 mb-0">Harish Honda</h1>
+              <p>Sales Enquiry Capture</p>
+            </div>
+          </div>
+
           <!-- Enquiry Form Start -->
           <form id="enquiryForm" name="enquiryForm">
             <!-- Enquiry ID -->
@@ -76,7 +83,16 @@
                 <select name="District" class="form-select" id="district" required>
                     <option value="">Select District</option>
                 </select>
+              </div> 
+
+            <!-- Inquiry Model -->
+            <div class="col-md-4">
+              <label for="modelName" class="form-label">Model Name</label>
+              <select name="Model Name" class="form-select" id="modelName" required>
+                  <option value="">Select Model</option>
+              </select>
             </div> 
+
             <hr class="my-4">
 
             <!-- Purchase Type And Enquiry Status -->
@@ -115,37 +131,70 @@
                 </div>
              </div>
              
-            <!-- Enquiry Source -->
-            <div class="mb-3 fs-4">Enquiry Source</div>
-            <div class="my-3">
-                    <!-- Showroom -->
-                    <div class="form-check">
-                        <input id="Showroom" name="Enquiry Source" type="radio" class="form-check-input" required value="Showroom">
-                        <label class="form-check-label" for="Showroom">Showroom</label>
-                        <select name="" id="showroomDropdown" style="display: none;" class="rounded my-2 py-1 px-3 border">
-                            <option value="">Select Source</option>
-                        </select>
-                    </div>
 
-                    <!-- Field -->
-                    <div class="form-check">
-                        <input id="Field" name="Enquiry Source" type="radio" class="form-check-input" required value="Field">
-                        <label class="form-check-label" for="Field">Field</label>
-                        <select name="" id="fieldDropdown" style="display: none;" class="rounded my-2 py-1 px-3 border">
-                            <option value="">Select Source</option>
-                        </select>
-                        <textarea name="Field Location" id="fieldLocation" style="display: none;" placeholder="Field Location" class="rounded my-2 py-1 px-3 border w-100"></textarea>
-                    </div>
+             <div style="display: flex; align-items: baseline;">
+                  <!-- Enquiry Source -->
+                  <div class="w-50">
+                  <div class="mb-3 fs-4">Enquiry Source</div>
+                  <div class="my-3">
+                          <!-- Showroom -->
+                          <div class="form-check">
+                              <input id="Showroom" name="Enquiry Source" type="radio" class="form-check-input" required value="Showroom">
+                              <label class="form-check-label" for="Showroom">Showroom</label>
+                              <select name="" id="showroomDropdown" style="display: none;" class="rounded my-2 py-1 px-3 border">
+                                  <option value="">Select Source</option>
+                              </select>
+                          </div>
 
-                    <!-- Digital Promotion -->
+                          <!-- Field -->
+                          <div class="form-check">
+                              <input id="Field" name="Enquiry Source" type="radio" class="form-check-input" required value="Field">
+                              <label class="form-check-label" for="Field">Field</label>
+                              <select name="" id="fieldDropdown" style="display: none;" class="rounded my-2 py-1 px-3 border">
+                                  <option value="">Select Source</option>
+                              </select>
+                              <textarea name="Field Location" id="fieldLocation" style="display: none;" placeholder="Field Location" class="rounded my-2 py-1 px-3 border"></textarea>
+                          </div>
+
+                          <!-- Digital Promotion -->
+                          <div class="form-check">
+                              <input id="DigitalPromotion" name="Enquiry Source" type="radio" class="form-check-input" required value="Digital Promotion">
+                              <label class="form-check-label" for="DigitalPromotion">Digital Promotion</label>
+                              <select name="" id="digitalPromotionDropdown" style="display: none;" class="rounded my-2 py-1 px-3 border">
+                                  <option value="">Select Source</option>
+                              </select>
+                          </div>      
+                  </div>
+                </div>
+
+                  <!-- Test Drive -->
+                  <div class="my-3 col-12 col-md-6">
+                    <div class="mb-3 fs-4">Test Ride</div>
                     <div class="form-check">
-                        <input id="DigitalPromotion" name="Enquiry Source" type="radio" class="form-check-input" required value="Digital Promotion">
-                        <label class="form-check-label" for="DigitalPromotion">Digital Promotion</label>
-                        <select name="" id="digitalPromotionDropdown" style="display: none;" class="rounded my-2 py-1 px-3 border">
-                            <option value="">Select Source</option>
-                        </select>
-                    </div>      
+                        <input id="Yes" name="Test Ride" type="radio" class="form-check-input" value="Yes" required>
+                        <label class="form-check-label" for="Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="No" name="Test Ride" type="radio" class="form-check-input" value="No" required>
+                        <label class="form-check-label" for="No">No</label>
+                    </div>
+                  </div>
+             </div>
+            <!--Remarks & FollowUp  -->
+             <div class="my-3 col-12 col-md-6">
+                <div class="mb-1 fs-4">Remarks</div>
+                <p class="text-body-secondary">*Whilst capturing remarks, mention Customer Profile,DP,Fiannce,Exchange:Yes/No and Actual remarks*</p>
+                <textarea name="Remarks" id="Remarks" placeholder="Enter Remarks here" class="rounded my-2 py-1 px-3 border w-100"></textarea>
+             </div>
+
+            <!-- 1st Follow Up Date -->
+            <div class="my-3 col-12 col-md-6">
+              <div class="mb-1 fs-4">Follow Up</div>
+              <p class="text-body-secondary">*1st Follow Up Date*</p>
+              <input type="date" name="1st Follow Up Date" id="date" class="form-control">
             </div>
+
+            <!-- Horizantal Line -->
             <hr class="my-4">
 
             <!-- Submit Button -->
@@ -161,40 +210,7 @@
     <!-- Reload Page After Submiting the form -->
     <script>
     // Submit Form
-
-    document.getElementById("enquiryForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // Prevent default form submission
-    const form = e.target;
-    const formData = new FormData(form);
-    const urlSearchParams = new URLSearchParams();
-
-    for (const data of formData) {
-        urlSearchParams.append(data[0], data[1]);
-    }
-
-    const submitButton = form.querySelector('button[type="submit"]');
-    submitButton.disabled = true;
-
-    const loadingIndicator = document.createElement("div");
-    form.appendChild(loadingIndicator);
-
-    fetch("https://script.google.com/macros/s/AKfycbwtTH4Cbrh1X3LSxlfPdm8A63l5OyRs_GZ3Y9_ZW4KBGxqzqYlgFmoQ5UMt-BPiv0KW/exec", {
-        method: "POST",
-        body: urlSearchParams
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert("Form submitted successfully!");
-        submitButton.disabled = false;
-        window.location.reload();
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("An error occurred while submitting the form.");
-        submitButton.disabled = false;
-    });
-});
-
+    document.getElementById("enquiryForm").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbwtTH4Cbrh1X3LSxlfPdm8A63l5OyRs_GZ3Y9_ZW4KBGxqzqYlgFmoQ5UMt-BPiv0KW/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{alert("Form submitted successfully!"),s.disabled=!1,window.location.reload()}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
 
     // Reset Form
     document.getElementById("reset").addEventListener("click",function(){location.reload()});
