@@ -1,14 +1,21 @@
 /* Body */
-body{
+/* body{
     height: 100dvh;
-    width: 100dvw;
+    width: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+    position: relative;
+    .container{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+} */
 
 
 /* Honda Logo */
