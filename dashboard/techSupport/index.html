@@ -5,29 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tickets</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Custom CSS for hero section */
-        .hero-section {
-            background-color: #f8f9fa; /* Light grey background */
-            padding: 100px 0; /* Padding top and bottom */
-            text-align: center; /* Center align text */
-        }
 
-        .hero-section h1 {
-            font-size: 3rem; /* Large font size */
-            margin-bottom: 20px; /* Bottom margin */
-        }
-
-        /* Custom CSS for responsive table */
-        .table-container {
-            overflow-x: auto; /* Enable horizontal scroll */
-        }
-
-        .table {
-            width: 100%; /* Table width 100% */
-            white-space: nowrap; /* Prevent line breaks */
-        }
-    </style>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
     <!-- Hero Section -->
@@ -39,7 +19,7 @@
     </div>
 
     <!-- Tickets Tab Navigation -->
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
@@ -63,6 +43,7 @@
                                 <th scope="col">Issue</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Resolution Time</th>
+                                <th scope="col">Resolve Action</th>
                             </tr>
                         </thead>
                         <tbody id="pending-body">
@@ -86,6 +67,7 @@
                                 <th scope="col">Issue</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Resolution Time</th>
+                                <th scope="col">Resolve Action</th>
                             </tr>
                         </thead>
                         <tbody id="resolved-body">
@@ -97,46 +79,24 @@
         </div>
     </div>
 
-    <script>
-        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGT5WKe9uPALCKnQ5prdzp-VqDV1cXsPxJQF5VVEXJV14y2Cni_tztGKADE7hvdc2wbLqHE0-69yT_/pub?output=csv';
-        const pendingTableBody = document.getElementById('pending-body');
-        const resolvedTableBody = document.getElementById('resolved-body');
+    <!-- Resolved Form -->
+    <form action="https://script.google.com/macros/s/AKfycbwr-N5Y5cbezQggRMjVwrRXxEIvXFJUKvx3iAVMSN1RrIcQRVPEgA2q2vMPIvFKJ0HU/exec" id="resolvedForm" class="bg-danger" method="post">
+        <input name="TH ID" type="text" id="resolvedId" value="" readonly> 
+        <input type="text" name="Status" value="Resolved" style="display: none;">
+        <div class="buttons">
+            <input type="submit" value="Mark As Resolved">
+            <input type="button" value="Cencel" id="cencelBtn">
+        </div>
+    </form>
 
-        fetch(SHEET_URL)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(csvText => {
-                const rows = csvText.split('\n').map(row => row.split(','));
-                const headers = rows[0];
-                const tableHeaders = ['TH ID', 'Department', 'Designation', 'Name', 'WhatsApp Number', 'Issue', 'Status', 'Resolution Time'];
 
-                rows.slice(1).forEach(row => {
-                    if (row.length === headers.length) {
-                        const tr = document.createElement('tr');
-                        tableHeaders.forEach(header => {
-                            const td = document.createElement('td');
-                            td.textContent = row[headers.indexOf(header)];
-                            tr.appendChild(td);
-                        });
-
-                        if (row[headers.indexOf('Status')].trim() === 'Pending') {
-                            pendingTableBody.appendChild(tr); // Append to Pending table body
-                        } else if (row[headers.indexOf('Status')].trim() === 'Resolved') {
-                            resolvedTableBody.appendChild(tr); // Append to Resolved table body
-                        }
-                    }
-                });
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    </script>
 
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- External Js -->
+    <script src="assets/script.js"></script>
 </body>
 </html>
