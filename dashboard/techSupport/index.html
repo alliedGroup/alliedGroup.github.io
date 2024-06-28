@@ -38,60 +38,105 @@
         </div>
     </div>
 
-    <!-- Tickets -->
+    <!-- Tickets Tab Navigation -->
     <div class="container mt-5">
-        <div class="table-container">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">TH ID</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Designation</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">WhatsApp Number</th>
-                        <th scope="col">Issue</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Resolution Time</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                    <!-- Rows will be inserted here dynamically -->
-                </tbody>
-            </table>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="resolved-tab" data-toggle="tab" href="#resolved" role="tab" aria-controls="resolved" aria-selected="false">Resolved</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <!-- Pending Tickets Tab -->
+            <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                <div class="table-container">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">TH ID</th>
+                                <th scope="col">Department</th>
+                                <th scope="col">Designation</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">WhatsApp Number</th>
+                                <th scope="col">Issue</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Resolution Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pending-body">
+                            <!-- Pending Rows will be inserted here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Resolved Tickets Tab -->
+            <div class="tab-pane fade" id="resolved" role="tabpanel" aria-labelledby="resolved-tab">
+                <div class="table-container">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">TH ID</th>
+                                <th scope="col">Department</th>
+                                <th scope="col">Designation</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">WhatsApp Number</th>
+                                <th scope="col">Issue</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Resolution Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resolved-body">
+                            <!-- Resolved Rows will be inserted here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-       const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGT5WKe9uPALCKnQ5prdzp-VqDV1cXsPxJQF5VVEXJV14y2Cni_tztGKADE7hvdc2wbLqHE0-69yT_/pub?output=csv';
-const tableBody = document.getElementById('table-body');
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGT5WKe9uPALCKnQ5prdzp-VqDV1cXsPxJQF5VVEXJV14y2Cni_tztGKADE7hvdc2wbLqHE0-69yT_/pub?output=csv';
+        const pendingTableBody = document.getElementById('pending-body');
+        const resolvedTableBody = document.getElementById('resolved-body');
 
-fetch(SHEET_URL)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
-    .then(csvText => {
-        const rows = csvText.split('\n').map(row => row.split(','));
-        const headers = rows[0];
-        const tableHeaders = ['TH ID', 'Department', 'Designation', 'Name', 'WhatsApp Number', 'Issue', 'Status', 'Resolution Time'];
+        fetch(SHEET_URL)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(csvText => {
+                const rows = csvText.split('\n').map(row => row.split(','));
+                const headers = rows[0];
+                const tableHeaders = ['TH ID', 'Department', 'Designation', 'Name', 'WhatsApp Number', 'Issue', 'Status', 'Resolution Time'];
 
-        rows.slice(1).forEach(row => {
-            if (row.length === headers.length && row[headers.indexOf('Status')].trim() === 'Pending') {
-                const tr = document.createElement('tr');
-                tableHeaders.forEach(header => {
-                    const td = document.createElement('td');
-                    td.textContent = row[headers.indexOf(header)];
-                    tr.appendChild(td);
+                rows.slice(1).forEach(row => {
+                    if (row.length === headers.length) {
+                        const tr = document.createElement('tr');
+                        tableHeaders.forEach(header => {
+                            const td = document.createElement('td');
+                            td.textContent = row[headers.indexOf(header)];
+                            tr.appendChild(td);
+                        });
+
+                        if (row[headers.indexOf('Status')].trim() === 'Pending') {
+                            pendingTableBody.appendChild(tr); // Append to Pending table body
+                        } else if (row[headers.indexOf('Status')].trim() === 'Resolved') {
+                            resolvedTableBody.appendChild(tr); // Append to Resolved table body
+                        }
+                    }
                 });
-                tableBody.appendChild(tr);
-            }
-        });
-    })
-    .catch(error => console.error('Error fetching data:', error));
-
-
+            })
+            .catch(error => console.error('Error fetching data:', error));
     </script>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
