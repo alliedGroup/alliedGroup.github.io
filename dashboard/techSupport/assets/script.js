@@ -53,3 +53,7 @@ document.querySelector("#cencelBtn").addEventListener("click", function(){
     document.querySelector("#resolvedForm").style.display ="none";
 })
     
+
+
+
+document.getElementById('resolutionTime').value=(function(){const now=new Date(),year=now.getFullYear(),month=String(now.getMonth()+1).padStart(2,'0'),day=String(now.getDate()).padStart(2,'0'),hours=String(now.getHours()).padStart(2,'0'),minutes=String(now.getMinutes()).padStart(2,'0'),seconds=String(now.getSeconds()).padStart(2,'0');return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`})();
