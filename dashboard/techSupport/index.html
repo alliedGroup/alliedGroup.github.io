@@ -80,17 +80,19 @@
     </div>
 
     <!-- Resolved Form -->
-    <form action="https://script.google.com/macros/s/AKfycbwr-N5Y5cbezQggRMjVwrRXxEIvXFJUKvx3iAVMSN1RrIcQRVPEgA2q2vMPIvFKJ0HU/exec" id="resolvedForm" class="bg-danger" method="post">
+    <form id="resolvedForm" class="bg-danger">
         <input name="TH ID" type="text" id="resolvedId" value="" readonly> 
         <input type="text" name="Resolution Time" id="resolutionTime" value="" style="display: none;">
         <div class="buttons">
-            <input type="submit" value="Mark As Resolved">
+            <button type="submit" value="">Mark As Resolved</button>
             <input type="button" value="Cencel" id="cencelBtn">
-
         </div>
     </form>
 
 
+    <script>
+        document.getElementById("resolvedForm").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbyExVysLO_KMKt1fz1x6Ps3XOvh_13NBPFyRUPi82FcYURiYQDePyoTJI8CEsvik7f0/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{alert("Form submitted successfully!"),s.disabled=!1,window.location.reload()}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
+    </script>
 
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -100,5 +102,6 @@
 
     <!-- External Js -->
     <script src="assets/script.js"></script>
+\
 </body>
 </html>
