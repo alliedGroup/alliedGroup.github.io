@@ -5,12 +5,15 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    position: relative;
 }
 
 /* Custom CSS for hero section */
 .hero-section {
-    background-color: #f8f9fa; /* Light grey background */
+    background-color: #000000; /* Light grey background */
+    /* background: url("images/bg.svg"); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     padding: 100px 0; /* Padding top and bottom */
     text-align: center; /* Center align text */
 }
@@ -18,6 +21,7 @@ body{
 .hero-section h1 {
     font-size: 3rem; /* Large font size */
     margin-bottom: 20px; /* Bottom margin */
+    color:#f8f9fa; 
 }
 
 /* Custom CSS for responsive table */
@@ -42,12 +46,34 @@ button{
 
 /* Resolved Form */
 #resolvedForm{
-    display: none;
-    height: 50%;
-    width: 30%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: block;
+    height: 20%;
+    width: 20%;
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
     z-index: 99;
+    background: #00000020;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    border: 1px solid #ffffff;
+    backdrop-filter: blur(10px);
+    #resolvedId{
+        width: 100%;
+        background: rgb(0, 0, 0);
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 10px;
+        height: 40px;
+        color: #fff;
+        padding: 0 10px;
+        text-align: center;
+    }
+    button{
+        padding: .3rem 1rem;
+        margin-right: .5rem;
+    }
+
+
 }
