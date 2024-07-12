@@ -9,7 +9,7 @@
     <!-- External CSS -->
     <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body class="mb-5">
     <!-- Hero Section -->
     <div class="hero-section">
         <div class="blurBg ">
@@ -37,8 +37,8 @@
                                 <th scope="col">Time</th>
                                 <th scope="col">Department</th>
                                 <th scope="col">Designation</th>
-                                <th scope="col">Name</th>
                                 <th scope="col">WhatsApp Number</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Issue</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Resolution Time</th>
@@ -54,6 +54,9 @@
         </div>
     </div>
 
+    <!-- Load More -->
+    <button class="loadMore btn px-4">Show More ⟳</button>
+
     <!-- Resolved Form -->
     <form id="resolvedForm">
         <div class="w-100 p-2">
@@ -67,10 +70,10 @@
     </form>
 
 
+    <!-- Submit Resolve Form -->
     <script>
       document.getElementById("resolvedForm").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbyExVysLO_KMKt1fz1x6Ps3XOvh_13NBPFyRUPi82FcYURiYQDePyoTJI8CEsvik7f0/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{fetchData(),document.querySelector("#resolvedForm").style.display ="none", s.disabled= false}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
     </script>
-
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

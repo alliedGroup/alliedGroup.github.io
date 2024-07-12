@@ -3,7 +3,7 @@ const spreadsheetId = '1d2wVZD2P1W1s2xP8dddxDd-777f9WF7JwNDN3_1wVxc'; // Replace
 const range = 'techSupport!A1:I'; // Specify the range of cells you want to fetch, adjust H as per your sheet's columns
 
 // Variable to set how many rows to display
-const rowsToDisplay = 10; // Change this value to display a different number of rows
+let rowsToDisplay = 10; // Change this value to display a different number of rows
 
 // Function to fetch data from Google Sheets API
 async function fetchData() {
@@ -89,10 +89,16 @@ window.onload = function() {
 };
 
 
-
 // Resolve Action 
-// Cencel Button
 document.querySelector("#cencelBtn").addEventListener("click", function(){
     document.querySelector("#resolvedForm").style.display ="none";
 })
 document.getElementById('resolutionTime').value=(function(){const now=new Date(),year=now.getFullYear(),month=String(now.getMonth()+1).padStart(2,'0'),day=String(now.getDate()).padStart(2,'0'),hours=String(now.getHours()).padStart(2,'0'),minutes=String(now.getMinutes()).padStart(2,'0'),seconds=String(now.getSeconds()).padStart(2,'0');return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`})();
+
+
+// Load More
+document.querySelector(".loadMore").addEventListener("click", function(){
+    console.log("working")
+    rowsToDisplay = rowsToDisplay + 10;
+    fetchData();  
+})
