@@ -43,6 +43,10 @@ button{
     font-size: 14px;
 }
 
+/* Hide Scrollbar */
+::-webkit-scrollbar {
+    display: none;
+}
 
 /* Resolved Form */
 #resolvedForm{
