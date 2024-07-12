@@ -12,19 +12,19 @@
 <body>
     <!-- Hero Section -->
     <div class="hero-section">
-        <div class="container">
-            <h1>Tech Support</h1>
-            <p class="lead text-white">Your Text Here</p>
+        <div class="blurBg ">
+            <div class="container">
+                <h1>Tech Support</h1>
+                <p class="lead text-white">Your Text Here</p>
+            </div>
         </div>
     </div>
 
     <!-- Tickets Tab Navigation -->
     <div class="container-fluid mt-5">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active px-5" style="border-radius: 5px 0 0 ;" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true" >Tickets</a>
-            </li>
-            <input type="date" name="dateFilter" id="dateFilter" class="form-control">
+            <!-- Date Filter -->
+            <!-- <input type="date" name="dateFilter" id="dateFilter" class="form-control"> -->
         </ul>
         <div class="tab-content" id="myTabContent">
             <!-- Pending Tickets Tab -->
@@ -68,7 +68,7 @@
 
 
     <script>
-        document.getElementById("resolvedForm").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbyExVysLO_KMKt1fz1x6Ps3XOvh_13NBPFyRUPi82FcYURiYQDePyoTJI8CEsvik7f0/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{fetchData(),document.querySelector("#resolvedForm").style.display ="none"}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
+      document.getElementById("resolvedForm").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbyExVysLO_KMKt1fz1x6Ps3XOvh_13NBPFyRUPi82FcYURiYQDePyoTJI8CEsvik7f0/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{fetchData(),document.querySelector("#resolvedForm").style.display ="none", s.disabled= false}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
     </script>
 
     <!-- Bootstrap JS, Popper.js, and jQuery -->

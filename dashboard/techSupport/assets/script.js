@@ -2,6 +2,9 @@ const apiKey = 'AIzaSyDD9JUeWWqnQ85KPtEtzSCxQ_0rl4DRNqQ'; // Replace with your a
 const spreadsheetId = '1d2wVZD2P1W1s2xP8dddxDd-777f9WF7JwNDN3_1wVxc'; // Replace with your actual spreadsheet ID
 const range = 'techSupport!A1:I'; // Specify the range of cells you want to fetch, adjust H as per your sheet's columns
 
+// Variable to set how many rows to display
+const rowsToDisplay = 10; // Change this value to display a different number of rows
+
 // Function to fetch data from Google Sheets API
 async function fetchData() {
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
@@ -48,8 +51,14 @@ function processData(values) {
         }
     });
 
-    // Populate data rows in the table body, starting from index 2 to skip headers and first data row
-    values.slice(2).forEach(row => {
+    // Select the last 'rowsToDisplay' rows, if there are less than 'rowsToDisplay' rows, select all excluding the header
+    const dataRows = values.length > rowsToDisplay + 1 ? values.slice(-rowsToDisplay) : values.slice(1);
+
+    // Reverse the data rows to display last row first
+    const reversedDataRows = dataRows.reverse();
+
+    // Populate data rows in the table body
+    reversedDataRows.forEach(row => {
         const tr = document.createElement('tr');
         headerIndexes.forEach(index => {
             const td = document.createElement('td');

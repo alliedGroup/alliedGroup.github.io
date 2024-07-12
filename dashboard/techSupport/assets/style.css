@@ -10,12 +10,24 @@ body{
 /* Custom CSS for hero section */
 .hero-section {
     background-color: #000000; /* Light grey background */
-    /* background: url("images/bg.svg"); */
+    background: url("images/bg1.webp");
+    opacity: 1;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 100px 0; /* Padding top and bottom */
+    height: 300px;
     text-align: center; /* Center align text */
+    position: relative;
+    .blurBg{
+        background:#00000038;
+        backdrop-filter: blur(5px);
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        display: flex;
+        align-items: center;
+    }
 }
 
 .hero-section h1 {
@@ -87,5 +99,13 @@ button{
     button{
         padding: .3rem 1rem;
         margin-right: .5rem;
+    }
+}
+
+/* Responsive */
+@media screen and (max-width:600px){
+    #resolvedForm{
+        width: 90%;
+        left: 5%;
     }
 }
