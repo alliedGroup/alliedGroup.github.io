@@ -46,7 +46,7 @@ button{
 
 /* Resolved Form */
 #resolvedForm{
-    display: block;
+    display: none;
     height: 20%;
     width: 20%;
     position: fixed;
@@ -56,7 +56,6 @@ button{
     background: #00000020;
     border-radius: 10px;
     overflow: hidden;
-    display: flex;
     border: 1px solid #ffffff;
     backdrop-filter: blur(10px);
     #resolvedId{
@@ -74,6 +73,4 @@ button{
         padding: .3rem 1rem;
         margin-right: .5rem;
     }
-
-
 }

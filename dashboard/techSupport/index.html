@@ -22,10 +22,7 @@
     <div class="container-fluid mt-5">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="resolved-tab" data-toggle="tab" href="#resolved" role="tab" aria-controls="resolved" aria-selected="false">Resolved</a>
+                <a class="nav-link active px-5" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Tickets</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -46,32 +43,8 @@
                                 <th scope="col">Resolve Action</th>
                             </tr>
                         </thead>
-                        <tbody id="pending-body">
+                        <tbody id="tickets">
                             <!-- Pending Rows will be inserted here dynamically -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Resolved Tickets Tab -->
-            <div class="tab-pane fade" id="resolved" role="tabpanel" aria-labelledby="resolved-tab">
-                <div class="table-container">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">TH ID</th>
-                                <th scope="col">Department</th>
-                                <th scope="col">Designation</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">WhatsApp Number</th>
-                                <th scope="col">Issue</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Resolution Time</th>
-                                <th scope="col">Resolve Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resolved-body">
-                            <!-- Resolved Rows will be inserted here dynamically -->
                         </tbody>
                     </table>
                 </div>
@@ -93,7 +66,7 @@
 
 
     <script>
-        document.getElementById("resolvedForm").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbyExVysLO_KMKt1fz1x6Ps3XOvh_13NBPFyRUPi82FcYURiYQDePyoTJI8CEsvik7f0/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{alert("Resolved!"),s.disabled=!1,window.location.reload()}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
+        document.getElementById("resolvedForm").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbyExVysLO_KMKt1fz1x6Ps3XOvh_13NBPFyRUPi82FcYURiYQDePyoTJI8CEsvik7f0/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{fetchData()}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
     </script>
 
     <!-- Bootstrap JS, Popper.js, and jQuery -->
@@ -104,6 +77,5 @@
 
     <!-- External Js -->
     <script src="assets/script.js"></script>
-\
 </body>
 </html>

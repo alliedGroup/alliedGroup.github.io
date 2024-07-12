@@ -1,49 +1,83 @@
-const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGT5WKe9uPALCKnQ5prdzp-VqDV1cXsPxJQF5VVEXJV14y2Cni_tztGKADE7hvdc2wbLqHE0-69yT_/pub?output=csv';
-const pendingTableBody = document.getElementById('pending-body');
-const resolvedTableBody = document.getElementById('resolved-body');
+const apiKey = 'AIzaSyDD9JUeWWqnQ85KPtEtzSCxQ_0rl4DRNqQ'; // Replace with your actual API key
+const spreadsheetId = '1d2wVZD2P1W1s2xP8dddxDd-777f9WF7JwNDN3_1wVxc'; // Replace with your actual spreadsheet ID
+const range = 'techSupport!A1:H'; // Specify the range of cells you want to fetch, adjust H as per your sheet's columns
 
-fetch(SHEET_URL)
-    .then(response => {
+// Function to fetch data from Google Sheets API
+async function fetchData() {
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
+
+    try {
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.text();
-    })
-    .then(csvText => {
-        const rows = csvText.split('\n').map(row => row.split(','));
-        const headers = rows[0];
-        const tableHeaders = ['TH ID', 'Department', 'Designation', 'Name', 'WhatsApp Number', 'Issue', 'Status', 'Resolution Time'];
 
-        rows.slice(1).forEach(row => {
-            if (row.length === headers.length) {
-                const tr = document.createElement('tr');
-                tableHeaders.forEach((header, index) => {
-                    const td = document.createElement('td');
-                    td.textContent = row[index];
-                    tr.appendChild(td);
-                });
+        const data = await response.json();
+        console.log('Fetched data:', data); // Log fetched data for debugging
+        processData(data.values);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle error, show error message, etc.
+    }
+}
 
-                // Add button to mark as resolved
-                const actionTd = document.createElement('td');
-                const resolveButton = document.createElement('button');
-                resolveButton.textContent = 'Resolved ?';
-                resolveButton.addEventListener('click', () => {
-                    // console.log(`Marking TH ID ${row[0]} as Resolved`);
-                    document.querySelector("#resolvedForm").style.display ="Block";
-                    document.querySelector("#resolvedId").setAttribute("value", `${row[0]}`); ;
-                });
-                actionTd.appendChild(resolveButton);
-                tr.appendChild(actionTd);
+// Function to process and display the data
+function processData(values) {
+    if (!values || values.length === 0) {
+        console.error('No data found in Google Sheets.');
+        return;
+    }
 
-                if (row[headers.indexOf('Status')].trim() === 'Pending') {
-                    pendingTableBody.appendChild(tr); // Append to Pending table body
-                } else if (row[headers.indexOf('Status')].trim() === 'Resolved') {
-                    resolvedTableBody.appendChild(tr); // Append to Resolved table body
-                }
-            }
+    const headers = values[0]; // First row contains headers
+    console.log('Headers:', headers); // Log headers for debugging
+
+    // Find the table headers in HTML
+    const tableHeaders = document.querySelectorAll('#pending thead th');
+    console.log('Table Headers:', tableHeaders); // Log table headers for debugging
+
+    // Clear any existing data in the table body
+    const tableBody = document.getElementById('tickets');
+    tableBody.innerHTML = '';
+
+    // Find index positions of headers from Google Sheet in HTML table headers
+    const headerIndexes = [];
+    headers.forEach((header, index) => {
+        const foundHeader = Array.from(tableHeaders).find(th => th.textContent.trim() === header.trim());
+        if (foundHeader) {
+            headerIndexes.push(index);
+        }
+    });
+
+    // Populate data rows in the table body, starting from index 2 to skip headers and first data row
+    values.slice(2).forEach(row => {
+        const tr = document.createElement('tr');
+        headerIndexes.forEach(index => {
+            const td = document.createElement('td');
+            td.textContent = row[index] || ''; // Use empty string if cell is empty
+            tr.appendChild(td);
         });
-    })
-    .catch(error => console.error('Error fetching data:', error));
+
+        // Create Resolve Action button in the last column (index 7, 8th column)
+        const actionTd = document.createElement('td');
+        const resolveButton = document.createElement('button');
+        resolveButton.textContent = 'Resolved ?';
+        resolveButton.addEventListener('click', () => {
+            document.querySelector("#resolvedForm").style.display ="Block";
+            document.querySelector("#resolvedId").setAttribute("value", `${row[0]}`); ;
+            console.log("Button Clicked")
+        });
+        actionTd.appendChild(resolveButton);
+        tr.appendChild(actionTd);
+
+        tableBody.appendChild(tr);
+    });
+}
+
+// Call fetchData function when the page loads
+window.onload = function() {
+    console.log('Fetching data from Google Sheets API...');
+    fetchData();
+};
 
 
 
