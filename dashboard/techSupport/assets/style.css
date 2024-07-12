@@ -48,6 +48,17 @@ button{
     display: none;
 }
 
+/* Date Filter */
+#dateFilter{
+    width: 50%;
+    max-width: 250px;
+    border-radius: 0 5px 0 0;
+    border-left: 0;
+    border-bottom: 0;
+}
+
+
+
 /* Resolved Form */
 #resolvedForm{
     display: none;

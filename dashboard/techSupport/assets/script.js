@@ -1,6 +1,6 @@
 const apiKey = 'AIzaSyDD9JUeWWqnQ85KPtEtzSCxQ_0rl4DRNqQ'; // Replace with your actual API key
 const spreadsheetId = '1d2wVZD2P1W1s2xP8dddxDd-777f9WF7JwNDN3_1wVxc'; // Replace with your actual spreadsheet ID
-const range = 'techSupport!A1:H'; // Specify the range of cells you want to fetch, adjust H as per your sheet's columns
+const range = 'techSupport!A1:I'; // Specify the range of cells you want to fetch, adjust H as per your sheet's columns
 
 // Function to fetch data from Google Sheets API
 async function fetchData() {
