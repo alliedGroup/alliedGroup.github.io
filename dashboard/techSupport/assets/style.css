@@ -70,6 +70,17 @@ button{
     border-bottom: 0;
 }
 
+/* Data Table */
+table{
+    white-space: wrap!important;
+    td{
+        height: auto;
+        max-width: 300px;
+        word-wrap: break-word;
+        overflow-wrap: break-word; 
+        background: red;
+    }
+}
 
 
 /* Resolved Form */
@@ -103,14 +114,6 @@ button{
     }
 }
 
-/* Responsive */
-@media screen and (max-width:600px){
-    #resolvedForm{
-        width: 90%;
-        left: 5%;
-    }
-}
-
 
 /* Load More  */
 .loadMore{
@@ -119,4 +122,13 @@ button{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+}
+
+
+/* Responsive */
+@media screen and (max-width:600px){
+    #resolvedForm{
+        width: 90%;
+        left: 5%;
+    }
 }

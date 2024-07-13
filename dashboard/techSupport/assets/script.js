@@ -2,6 +2,7 @@ const apiKey = 'AIzaSyDD9JUeWWqnQ85KPtEtzSCxQ_0rl4DRNqQ'; // Replace with your a
 const spreadsheetId = '1d2wVZD2P1W1s2xP8dddxDd-777f9WF7JwNDN3_1wVxc'; // Replace with your actual spreadsheet ID
 const range = 'techSupport!A1:I'; // Specify the range of cells you want to fetch, adjust H as per your sheet's columns
 
+
 // Variable to set how many rows to display
 let rowsToDisplay = 10; // Change this value to display a different number of rows
 
@@ -17,6 +18,8 @@ async function fetchData() {
 
         const data = await response.json();
         console.log('Fetched data:', data); // Log fetched data for debugging
+
+        
         processData(data.values);
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -102,3 +105,23 @@ document.querySelector(".loadMore").addEventListener("click", function(){
     rowsToDisplay = rowsToDisplay + 10;
     fetchData();  
 })
+
+
+
+// Count Pending
+const url = 'https://sheets.googleapis.com/v4/spreadsheets/1d2wVZD2P1W1s2xP8dddxDd-777f9WF7JwNDN3_1wVxc/values/H3:H?key=AIzaSyDD9JUeWWqnQ85KPtEtzSCxQ_0rl4DRNqQ';
+// Make an HTTP GET request to the Google Sheets API
+function updatePending(){
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        if (data.values && data.values.length > 0) {
+        const pendingCount = data.values.filter(row => row[0].toLowerCase() === 'pending').length;
+        document.querySelector(".pendingCount").textContent = pendingCount;
+        } else {
+        console.log('No data found.');
+        }
+    })
+    .catch(error => console.error('Error retrieving data from sheet:', error));
+}
+updatePending();
