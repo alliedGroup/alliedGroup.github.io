@@ -4,7 +4,8 @@ const range = 'techSupport!A1:I'; // Specify the range of cells you want to fetc
 
 
 // Variable to set how many rows to display
-let rowsToDisplay = 10; // Change this value to display a different number of rows
+let rowsToDisplay = 10; // Change this value to display a different number of rows ( Default Rows )
+let loadMoreRows = 10;  // Load More Rows
 
 // Function to fetch data from Google Sheets API
 async function fetchData() {
@@ -15,11 +16,7 @@ async function fetchData() {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-
         const data = await response.json();
-        console.log('Fetched data:', data); // Log fetched data for debugging
-
-        
         processData(data.values);
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -30,16 +27,12 @@ async function fetchData() {
 // Function to process and display the data
 function processData(values) {
     if (!values || values.length === 0) {
-        console.error('No data found in Google Sheets.');
         return;
     }
 
     const headers = values[0]; // First row contains headers
-    console.log('Headers:', headers); // Log headers for debugging
-
     // Find the table headers in HTML
     const tableHeaders = document.querySelectorAll('#pending thead th');
-    console.log('Table Headers:', tableHeaders); // Log table headers for debugging
 
     // Clear any existing data in the table body
     const tableBody = document.getElementById('tickets');
@@ -74,35 +67,31 @@ function processData(values) {
         const resolveButton = document.createElement('button');
         resolveButton.textContent = 'Resolved ?';
         resolveButton.addEventListener('click', () => {
-            document.querySelector("#resolvedForm").style.display ="Block";
+            document.querySelector("#resolvedForm").style.cssText= "opacity:1; position:fixed; bottom:10%;";
             document.querySelector("#resolvedId").setAttribute("value", `${row[0]}`); ;
-            console.log("Button Clicked")
         });
         actionTd.appendChild(resolveButton);
         tr.appendChild(actionTd);
-
         tableBody.appendChild(tr);
     });
 }
 
 // Call fetchData function when the page loads
 window.onload = function() {
-    console.log('Fetching data from Google Sheets API...');
     fetchData();
 };
 
 
 // Resolve Action 
 document.querySelector("#cencelBtn").addEventListener("click", function(){
-    document.querySelector("#resolvedForm").style.display ="none";
+    document.querySelector("#resolvedForm").style.cssText= "opacity:0; position:fixed; bottom:-30%;";;
 })
 document.getElementById('resolutionTime').value=(function(){const now=new Date(),year=now.getFullYear(),month=String(now.getMonth()+1).padStart(2,'0'),day=String(now.getDate()).padStart(2,'0'),hours=String(now.getHours()).padStart(2,'0'),minutes=String(now.getMinutes()).padStart(2,'0'),seconds=String(now.getSeconds()).padStart(2,'0');return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`})();
-
 
 // Load More
 document.querySelector(".loadMore").addEventListener("click", function(){
     console.log("working")
-    rowsToDisplay = rowsToDisplay + 10;
+    rowsToDisplay = rowsToDisplay + loadMoreRows;
     fetchData();  
 })
 
@@ -125,3 +114,10 @@ function updatePending(){
     .catch(error => console.error('Error retrieving data from sheet:', error));
 }
 updatePending();
+
+// Update Data 
+// function updateData(){
+//     updatePending();
+//     fetchData()
+// }
+// setInterval(updateData, 5000)
