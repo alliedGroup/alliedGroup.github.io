@@ -1,22 +1,29 @@
-/* Body */
-/* body{
-    height: 100dvh;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Header */
+.header{
+    /* background-image: url("../images/techSupportBg.webp"); */
+    background-size: cover;
+    background-repeat: no-repeat;
     position: relative;
-    .container{
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    .blurBg{
+        height: 100%;
+        width: 100%;
+        background-color: #ffffff86;
         position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        z-index: 1;
+        backdrop-filter: blur(2px);
     }
-} */
 
+    .headerContent{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        z-index: 99;
+    }
+}
 
 /* Honda Logo */
 .hondaLogo{

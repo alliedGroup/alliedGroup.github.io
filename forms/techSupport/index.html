@@ -11,19 +11,23 @@
 </head>
 
      <!-- Heading -->
-     <body class="w-100 col d-flex justify-content-center my-5 px-4">
+     <body class="w-100 col d-flex justify-content-center my-5 px-2">
       <!-- Heading -->
       <div class="container col col-md-6">
         <div class="header mb-5 border-bottom d-flex pb-5">
-          <img class="hondaLogo" src="images/hondaLogo.svg" alt="Harish Honda">
-          <div class="title ms-4">
-            <h1 class="fs-1 mb-0">Harish Honda</h1>
-            <p class="text-secondary">Tech. Support Ticket</p>
-            
+          <div class="blurBg"></div>
+          <div class="headerContent">
+              <div class="d-flex">
+                  <img class="hondaLogo" src="images/hondaLogo.svg" alt="Harish Honda" style="filter: grayscale(100%) brightness(0);">
+                  <div class="title ms-4">
+                    <h1 class="fs-1 mb-0">Harish Honda</h1>
+                    <p class="text-secondary">Tech. Support Ticket</p>
+                  </div>
+              </div>
           </div>
         </div>
         <!-- Tech Support Form -->
-        <form id="techSupport">
+        <form id="techSupport" class="">
           <!-- Tech Support ID -->
           <div class="col-sm-6 mb-5">
             <label  for="techSupportId" class="form-label">Tech Support ID</label>
@@ -36,18 +40,18 @@
           <!-- Department -->
           <div class="form-group mb-5">
             <label for="department">Department Section (অধ্যায় )</label>
-            <select id="department" class="form-control bg-info-subtle" name="Department">
+            <select id="department" class="form-control bg-secondary-subtle" name="Department" required>
               <option value="Select">Select Department</option>
-              <option value="Sales">Sales (বিক্রয়)</option>
-              <option value="Service">Service (সেবা)</option>
-              <option value="Network">Network (অন্তর্জাল)</option>
+              <option value="Sales">SALES (বিক্রয়)</option>
+              <option value="Service">SERVICE (সেবা)</option>
+              <option value="Network">NETWORK (অন্তর্জাল)</option>
               <option value="KIA">KIA (কেআইএ)</option>
               <option value="TATA-MSR">TATA-MSR (টাটা-এমএসআর)</option>
               <option value="TATA-DSR">TATA-DSR (টাটা-ডিএসআর)</option>
-              <option value="Spares">Spares (স্পেয়ার)</option>
+              <option value="Spares">SPARES (স্পেয়ার)</option>
               <option value="MDO">MDO (এমডিও)</option>
-              <option value="Accounts">Accounts (হিসাব)</option>
-              <option value="Maruti">Maruti (মারুতি)</option>
+              <option value="Accounts">ACCOUNTS (হিসাব)</option>
+              <option value="Maruti">MARUTI (মারুতি)</option>
             </select>
           </div>
 
@@ -61,22 +65,22 @@
           <!-- Name -->
           <div class="mb-3">
             <label for="Name" class="form-label">Your Name (আপনার নাম )</label>
-            <input type="text" class="form-control bg-body-secondary" id="text" name="Name">
+            <input type="text" class="form-control bg-body-secondary" id="text" name="Name" required>
           </div>
           <!-- Whatsapp Number -->
           <div class="mb-3">
             <label for="number" class="form-label">Your WhatsApp Number (আপনার হোয়াটসঅ্যাপ নম্বর)</label>
-            <input type="number" class="form-control bg-body-secondary" id="number" name="WhatsApp Number">
+            <input type="number" class="form-control bg-body-secondary" id="number" name="WhatsApp Number" required>
           </div>
           <!-- Issue -->
           <div class="mb-4">
               <label for="Issue" class="form-label">Issue ( সমস্যা )</label>
-              <textarea rows="4" name="Issue" id="Remarks" placeholder="Text here" class="rounded my-2 py-1 px-3 border w-100 bg-body-secondary"></textarea>
-              <div id="emailHelp" class="form-text">*Please describe here your Issues Sheet/Studio *</div>
+              <textarea rows="4" name="Issue" id="Remarks" placeholder="Please describe here your Issues" class="rounded my-2 py-1 px-3 border w-100 bg-body-secondary" required></textarea>
+              <!-- <div id="emailHelp" class="form-text">*Please describe here your Issues Sheet/Studio *</div> -->
           </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary px-5">Submit</button>
+        <button id="submitBtn" type="submit" class="btn btn-dark px-5">Submit</button>
       </form>
       </div>
 
@@ -88,7 +92,7 @@
     <!-- Internal JS -->
     <script>
       // Submit Form
-      document.getElementById("techSupport").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbxhhZc_T5rpQtqP66yLYphP4VsQa7vy-pog0_0yaWiCc122Hy31OgGEAxXnYWXIaZBCQQ/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{alert("Form submitted successfully!"),s.disabled=!1,window.location.reload()}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
+      document.getElementById("techSupport").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0,document.querySelector("#submitBtn").innerHTML = "Please Wait..";const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbxhhZc_T5rpQtqP66yLYphP4VsQa7vy-pog0_0yaWiCc122Hy31OgGEAxXnYWXIaZBCQQ/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{alert("Form submitted successfully!"),s.disabled=!1,window.location.reload()}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
   
       // Reset Form
       document.getElementById("reset").addEventListener("click",function(){location.reload()});
