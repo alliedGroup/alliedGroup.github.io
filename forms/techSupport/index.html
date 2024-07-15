@@ -88,7 +88,7 @@
     <!-- Internal JS -->
     <script>
       // Submit Form
-      document.getElementById("techSupport").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycby4-XCHB4BEZAEmSytQzQBPUXOYlnfOryHynsi9LLuqSQ8_UMJLMsMRof728-SOojsa/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{alert("Form submitted successfully!"),s.disabled=!1,window.location.reload()}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
+      document.getElementById("techSupport").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbxhhZc_T5rpQtqP66yLYphP4VsQa7vy-pog0_0yaWiCc122Hy31OgGEAxXnYWXIaZBCQQ/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{alert("Form submitted successfully!"),s.disabled=!1,window.location.reload()}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
   
       // Reset Form
       document.getElementById("reset").addEventListener("click",function(){location.reload()});

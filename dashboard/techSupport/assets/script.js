@@ -1,5 +1,5 @@
-const apiKey = 'AIzaSyDD9JUeWWqnQ85KPtEtzSCxQ_0rl4DRNqQ'; // Replace with your actual API key
-const spreadsheetId = '1d2wVZD2P1W1s2xP8dddxDd-777f9WF7JwNDN3_1wVxc'; // Replace with your actual spreadsheet ID
+const apiKey = 'AIzaSyAosAehTaSmL8uCDsOVCGeB32M2LJTsCwE'; // Replace with your actual API key
+const spreadsheetId = '1hnv1gNZNvL3l31Jz2hGDc2uEnogcd5WkHWOB1e4Cz4w'; // Replace with your actual spreadsheet ID
 const range = 'techSupport!A1:I'; // Specify the range of cells you want to fetch, adjust H as per your sheet's columns
 
 
@@ -98,7 +98,7 @@ document.querySelector(".loadMore").addEventListener("click", function(){
 
 
 // Count Pending
-const url = 'https://sheets.googleapis.com/v4/spreadsheets/1d2wVZD2P1W1s2xP8dddxDd-777f9WF7JwNDN3_1wVxc/values/H3:H?key=AIzaSyDD9JUeWWqnQ85KPtEtzSCxQ_0rl4DRNqQ';
+const url = 'https://sheets.googleapis.com/v4/spreadsheets/1hnv1gNZNvL3l31Jz2hGDc2uEnogcd5WkHWOB1e4Cz4w/values/techSupport!H3:H?key=AIzaSyAosAehTaSmL8uCDsOVCGeB32M2LJTsCwE';
 // Make an HTTP GET request to the Google Sheets API
 function updatePending(){
     fetch(url)
@@ -115,9 +115,11 @@ function updatePending(){
 }
 updatePending();
 
-// Update Data 
+
+
+// Update Data Live
 // function updateData(){
 //     updatePending();
 //     fetchData()
 // }
-// setInterval(updateData, 5000)
+// setInterval(updateData, 1000)
