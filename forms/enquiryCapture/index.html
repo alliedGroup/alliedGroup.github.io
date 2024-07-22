@@ -210,7 +210,7 @@
     <!-- Reload Page After Submiting the form -->
     <script>
     // Submit Form
-    document.getElementById("enquiryForm").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbwtTH4Cbrh1X3LSxlfPdm8A63l5OyRs_GZ3Y9_ZW4KBGxqzqYlgFmoQ5UMt-BPiv0KW/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{alert("Form submitted successfully!"),s.disabled=!1,window.location.reload()}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
+    document.getElementById("enquiryForm").addEventListener("submit",function(e){e.preventDefault();const t=e.target,n=new FormData(t),o=new URLSearchParams;for(const e of n)o.append(e[0],e[1]);const s=t.querySelector('button[type="submit"]');s.disabled=!0;const r=document.createElement("div");t.appendChild(r),fetch("https://script.google.com/macros/s/AKfycbxa2jP7Dlb0gFc5B34Ku2JCOian1tCUdzoV-XQQCfdk01-7NmHWMfqw0i6FJkMD5KVaaw/exec",{method:"POST",body:o}).then(e=>e.json()).then(n=>{alert("Form submitted successfully!"),s.disabled=!1,window.location.reload()}).catch(e=>{console.error("Error:",e),alert("An error occurred while submitting the form."),s.disabled=!1})});
 
     // Reset Form
     document.getElementById("reset").addEventListener("click",function(){location.reload()});
